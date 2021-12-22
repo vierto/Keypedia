@@ -1,0 +1,87 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-image: url("https://www.design4retail.co.uk/wp-content/uploads/2019/10/cait-ellis-V1PwekZF9hA-unsplash-e1570442168737-2000x1075.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 1px;
+    user-select: none;
+    height: 1020px;
+}
+
+img {
+    width: 170px;
+    border-radius: 100px;
+}
+
+form {
+    background-color: #50dfa8;
+    padding: 20px;
+    border-radius: 15px;
+    padding-top: 5px;
+    margin-top: 100px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    margin: 15px auto;
+    width: 50%;
+    justify-content: space-between;
+}
+
+.form-field #radio-gender {
+    display: flex;
+}
+
+.form-field input {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-style: none;
+    width: 100%;
+    border-radius: 6px;
+}
+
+.form-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.form-submit input {
+    width: 50%;
+    border-style: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    padding: 5px 5px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.form-submit input:hover {
+    background-color: rgb(0, 153, 107);
+    color: rgb(255, 255, 255);
+}
+
+.form-submit input:active {
+    background-color: rgb(78, 156, 230);
+    color: rgb(255, 255, 255);
+}
+
+.form-container {
+    min-width: 500px;
+    width: 15%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #50dfa8;
+    border-radius: 15px;
+}
