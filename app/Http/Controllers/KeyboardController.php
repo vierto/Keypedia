@@ -124,12 +124,11 @@ class KeyboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $keyboard_id)
     {
 
         $rules = [
-            'category_name' => 'required|in:TKL Mechanical Keyboard, 60% Mechanical Keyboard, 
-                                            Full Size Mechanical Keyboard, Full Size Membrane Keyboard',
+            'category_name' => 'required',
             'keyboard_name' => 'required|min:5',
             'keyboard_price' => 'required|integer|gt:0',
             'description' => 'required|min:20',
@@ -138,9 +137,9 @@ class KeyboardController extends Controller
 
         $request->validate($rules);
 
-        $id = $request->keyboard_id;
+        $id = $keyboard_id;
         $keyboard = Keyboard::find($id);
-
+        $category = Category::where('category_name', $request->category_name)->first();
         $imageFile = $request->file('keyboard_image');
         if($imageFile != null){
             Storage::delete('public/'.$keyboard->keyboard_image);
@@ -153,13 +152,18 @@ class KeyboardController extends Controller
             $keyboard->keyboard_image = $keyboard->keyboard_image;
         }
 
-        $keyboard->category_id = $request->category_id != null ? $request->category_id: $keyboard->category_id;
+        $keyboard->category_id = $category->id != null ? $category->id: $keyboard->category_id;
         $keyboard->keyboard_name = $request->keyboard_name != null ? $request->keyboard_name : $keyboard->keyboard_name;
         $keyboard->keyboard_price = $request->keyboard_price !=null ? $request->keyboard_price : $keyboard->price;
         $keyboard->description = $request->description !=null ? $request->description : $keyboard->description;
 
         $keyboard->save();
         return redirect()->back();
+    }
+
+    public function updateKeyboard($id) {
+        $categories = Category::all();
+        return view('updateKeyboard')->with('categories', $categories)->with('keyboard_id', $id);
     }
 
     /**

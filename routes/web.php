@@ -41,7 +41,9 @@ Route::get('/', [CategoryController::class, 'index']);
 
 Route::get('/category/{category_name}', [CategoryController::class, 'show']);
 
-Route::post('/updateCategory', [CategoryController::class, 'update']);
+Route::get('/updateCategory/{id}', [CategoryController::class, 'updateCategory']);
+
+Route::post('/updateCategoryValidation/{id}', [CategoryController::class, 'update']);
 
 Route::post('/deleteCategory/{id}', [CategoryController::class, 'destroy']);
 
@@ -50,9 +52,11 @@ Route::get('/category/{category_name}/keyboard/{keyboard_name}', [KeyboardContro
 
 Route::get('/addKeyboard', [KeyboardController::class, 'index']);
 
+Route::get('/updateKeyboard/{id}', [KeyboardController::class, 'updateKeyboard']);
+
 Route::post('/insertKeyboard', [KeyboardController::class, 'store']);
 
-Route::post('/updateKeyboard', [KeyboardController::class, 'update']);
+Route::post('/updateKeyboardValidation/{keyboard_id}', [KeyboardController::class, 'update']);
 
 Route::post('/deleteKeyboard/{id}', [KeyboardController::class, 'destroy']);
 

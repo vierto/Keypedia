@@ -76,9 +76,8 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $category_id)
     {
-
         $rules = [
             'category_name' => 'required|unique:categories|min:5',
             'category_image' => 'nullable'
@@ -86,7 +85,7 @@ class CategoryController extends Controller
 
         $request->validate($rules);
 
-        $id = $request->category_id;
+        $id = $category_id;
         $category = Category::find($id);
 
         $imageFile = $request->file('category_image');
@@ -101,11 +100,16 @@ class CategoryController extends Controller
             $category->category_image = $category->category_image;
         }
 
-        $category->id = $request->category_id != null ? $request->category_id: $category->category_id;
+        $category->id = $category_id != null ? $category_id: $category->id;
         $category->category_name = $request->category_name != null ? $request->category_name : $category->category_name;
 
         $category->save();
         return redirect()->back();
+    }
+
+    public function updateCategory($id) {
+        $categories = Category::all();
+        return view('updateCategory')->with('categories', $categories)->with('category_id', $id);
     }
 
     /**
